@@ -1,0 +1,25 @@
+{
+  "name": "sanelenium",
+  "version": "0.0.1",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alexdavid/sanelenium.git"
+  },
+  "author": "Alex David",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexdavid/sanelenium/issues"
+  },
+  "homepage": "https://github.com/alexdavid/sanelenium",
+  "devDependencies": {
+    "lodash": "^2.2.1",
+    "mycha": "^0.6.2",
+    "portfinder": "^0.2.1"
+  },
+  "dependencies": {
+    "chromedriver": "2.10.0",
+    "coffee-script": "^1.8.0",
+    "selenium-webdriver": "2.43.5"
+  }
+}
