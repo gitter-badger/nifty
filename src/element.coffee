@@ -14,4 +14,8 @@ class Element extends Asyncify
       @element.click()
 
 
+    text: ->
+      @element.getText()
+
+
 module.exports = Element

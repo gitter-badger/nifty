@@ -7,12 +7,16 @@ class MockServer
 
   constructor: ->
     @requests = []
+    @response = ''
     @server = http.createServer @handleServerRequest
 
 
   handleServerRequest: (req, res) =>
     @requests.push req
-    res.end '<a href="/click-me" class="click-me">click me</a>'
+    res.end @response
+
+
+  respondWith: (@response) ->
 
 
   requestsTo: (url) ->

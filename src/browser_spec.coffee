@@ -16,10 +16,11 @@ describe 'Browser', ->
 
   describe '$', ->
 
-    beforeEach (done) ->
-      @browser.visit @url, done
-
     describe 'click', ->
+
+      beforeEach (done) ->
+        @mockServer.respondWith '<a href="/click-me" class="click-me">click me</a>'
+        @browser.visit @url, done
 
       it 'clicks on elements', (done) ->
         @browser.$('.click-me').click (err) =>
@@ -30,6 +31,18 @@ describe 'Browser', ->
         @browser.$('.nonexistent-element').click (err) =>
           expect(err).to.exist
           done()
+
+
+    describe 'text', ->
+
+      beforeEach (done) ->
+        @mockServer.respondWith '<div id="element">this <span>is</span> <strong>the</strong> text</div>'
+        @browser.visit @url, done
+
+      it 'returns the text of the element', (done) ->
+        @browser.$('#element').text (err, text) =>
+          expect(text).to.equal 'this is the text'
+          done(err)
 
 
   describe 'visit', ->
