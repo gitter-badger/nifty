@@ -11,7 +11,6 @@
   "bugs": {
     "url": "https://github.com/alexdavid/sanelenium/issues"
   },
-  "homepage": "https://github.com/alexdavid/sanelenium",
   "devDependencies": {
     "lodash": "^2.2.1",
     "mycha": "^0.6.2",
@@ -21,5 +20,9 @@
     "chromedriver": "2.10.0",
     "coffee-script": "^1.8.0",
     "selenium-webdriver": "2.43.5"
+  },
+  "homepage": "https://github.com/alexdavid/sanelenium",
+  "scripts": {
+    "test": "mycha run src"
   }
 }
