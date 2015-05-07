@@ -4,25 +4,29 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git://github.com/alexdavid/sanelenium.git"
+    "url": "git://github.com/originate/sanelenium.git"
   },
   "author": "Alex David",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alexdavid/sanelenium/issues"
+    "url": "https://github.com/originate/sanelenium/issues"
   },
   "devDependencies": {
-    "lodash": "^2.2.1",
-    "mycha": "^0.6.2",
-    "portfinder": "^0.2.1"
+    "async": "^0.9.0",
+    "body-parser": "^1.12.3",
+    "chai": "^2.2.0",
+    "coffee-script": "^1.9.2",
+    "cucumber": "^0.4.8",
+    "express": "^4.12.3"
   },
   "dependencies": {
     "chromedriver": "2.10.0",
     "coffee-script": "^1.8.0",
+    "lodash": "^3.7.0",
     "selenium-webdriver": "2.43.5"
   },
-  "homepage": "https://github.com/alexdavid/sanelenium",
+  "homepage": "https://github.com/originate/sanelenium",
   "scripts": {
-    "test": "mycha run src"
+    "test": "cucumber-js -r features/step_definitions"
   }
 }
