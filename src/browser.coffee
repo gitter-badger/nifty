@@ -12,7 +12,6 @@ class Browser extends Asyncify
 
 
   mapLog = (log) ->
-    console.log log
     {message, level} = log
     type = switch level.name
       when 'INFO' then 'log'
