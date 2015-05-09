@@ -10,4 +10,8 @@ Feature: Reading the text of DOM elements
       <div>This is <strong>the</strong> text</div>
       """
     When I run "browser.$('div').text done"
-    Then it calls done with the arguments `null, "This is the text"`
+    Then it calls done with the arguments
+      """
+      null,
+      "This is the text"
+      """

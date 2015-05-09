@@ -11,7 +11,7 @@ Feature: Clicking on DOM elements
       """
     When I run "browser.$('button').click done"
     Then the "button" tag is clicked
-    And it calls done with no arguments
+    And it calls done without error
 
 
   Scenario: Clicking on non-existent elements
@@ -21,4 +21,4 @@ Feature: Clicking on DOM elements
       """
     When I run "browser.$('span').click done"
     Then there are no click events
-    And it calls done with no arguments
+    And it calls done with an error

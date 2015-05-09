@@ -22,11 +22,25 @@ module.exports = ->
     runCoffee coffeeExpression, {@browser, @done}
 
 
-  @Then /^it calls done with (?:no arguments|the arguments `([^`]+)`)?$/, (args, done) ->
+  @When /^the webpage I am on logs an? (message|warning|error): "([^"]+)"$/, (type, message, done) ->
+    method = switch type
+      when 'message' then 'log'
+      when 'warning' then 'warn'
+      when 'error' then 'error'
+    @testWebServer.respondWith "<script>console.#{method}(#{JSON.stringify message});</script>"
+    @browser.visit '/', done
+
+
+  @Then /^it calls done with the arguments$/, (args, done) ->
     expect(@done).to.have.been.calledOnce
-    if args?
-      parsedArgs = args.split(',').map JSON.parse
-      expect(@done).to.have.been.calledWithExactly parsedArgs...
+    parsedArgs = eval "[#{args}]"
+    expect(@done).to.have.been.calledWithExactly parsedArgs...
+    done()
+
+
+  @Then /^it calls done without error$/, (done) ->
+    expect(@done).to.have.been.calledOnce
+    expect(@done).to.have.been.calledWith null
     done()
 
 
