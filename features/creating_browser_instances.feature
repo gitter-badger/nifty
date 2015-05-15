@@ -1,21 +1,21 @@
-Feature: Creating browser instances
+Feature: Creating Sanelenium instances
 
-  As a developer creating a browser instance
-  I want to be able to provide the host to point to as a url object or a string
-  So that I can use Sanelenium with the standard node conventions
+  As a developer creating a Sanelenium instance
+  I want to be able to provide the host to browse using standard Node.js conventions for URLs
+  So that I can use Sanelenium like any other Node.js module.
 
 
-  Scenario: providing a string
+  Scenario: providing the URL as a string
     Given I create a Sanelenium instance by running "new Browser 'http://example.com:5000'"
-    Then I have a browser instance pointing to "http://example.com:5000"
+    Then this instance is pointing to "http://example.com:5000"
 
 
-  Scenario Outline: providing a url object
+  Scenario Outline: providing the URL as an object
     Given I create a Sanelenium instance by running "new Browser <CONSTRUCTOR ARGUMENTS>"
-    Then I have a browser instance pointing to "<SERVER>"
+    Then this instance is pointing to "<HOST>"
 
     Examples:
-      | CONSTRUCTOR ARGUMENTS                                   | SERVER                   |
+      | CONSTRUCTOR ARGUMENTS                                   | HOST                     |
       | host: 'example.com:5001'                                | http://example.com:5001  |
       | hostname: 'example.com'                                 | http://example.com       |
       | hostname: 'example.com', port: 5002                     | http://example.com:5002  |
@@ -23,6 +23,6 @@ Feature: Creating browser instances
       | protocol: 'https:', hostname: 'example.com', port: 2000 | https://example.com:2000 |
 
 
-  Scenario: creating a non-customized browser instance
-    Given I create a Sanelenium instance by running "new Browser"
-    Then I have a browser instance with no default host configured
+  Scenario: creating an uncustomized instance
+    Given I create a Sanelenium instance by running "new Browser()"
+    Then this instance has no default host configured
