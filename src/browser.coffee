@@ -10,14 +10,16 @@ chrome.setDefaultService new chrome.ServiceBuilder(chromeDriverPath).build()
 
 class Browser extends Asyncify
 
-
   mapLog = (log) ->
-    {message, level} = log
-    type = switch level.name
-      when 'INFO' then 'log'
-      when 'WARNING' then 'warn'
-      when 'SEVERE' then 'error'
-    {type, message}
+    [match, pageUrl, line, column, message] = log.message.match /^([^ ]+) (\d+):(\d+) (.+)/
+    type = { INFO: 'log', WARNING: 'warn', SEVERE: 'error' }[log.level.name]
+    {
+      type, message
+      url: pageUrl
+      line: parseInt line
+      column: parseInt column
+      timestamp: log.timestamp
+    }
 
 
   constructor: (host) ->

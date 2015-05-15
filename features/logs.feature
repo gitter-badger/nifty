@@ -7,43 +7,54 @@ Feature: Getting browser logs
   Scenario: Getting console.log output
     When the webpage I am on runs `console.log('my message')`
     And I run "browser.getLogs done"
-    Then it calls done with the arguments
+    Then the parameter "done" is called with the 2nd parameter matching the orderly schema
       """
-      null,
-      [{
-        type: 'log',
-        message: 'my message',
-        url: 'http://localhost:5000',
-        line: <NUMBER>,
-        column: <NUMBER>,
-        timestamp: <DATE>
-      }]
+      array {
+        object {
+          string type["log"];
+          string message["my message"];
+          string url["http://localhost:5000/"];
+          number line;
+          number column;
+          number timestamp;
+        }
+      }
       """
 
 
   Scenario: Getting console.warn output
-    When the webpage I am on runs `console.warn('my message')`
+    When the webpage I am on runs `console.warn('my warning')`
     And I run "browser.getLogs done"
-    Then it calls done with the arguments
+    Then the parameter "done" is called with the 2nd parameter matching the orderly schema
       """
-      null,
-      [{
-        type: 'warn',
-        message: 'http://localhost:5000/ 1:17 my warning',
-      }]
+      array {
+        object {
+          string type["warn"];
+          string message["my warning"];
+          string url["http://localhost:5000/"];
+          number line;
+          number column;
+          number timestamp;
+        }
+      }
       """
 
 
   Scenario: Getting console.error output
-    When the webpage I am on runs `console.error('my message')`
+    When the webpage I am on runs `console.error('my error')`
     And I run "browser.getLogs done"
-    Then it calls done with the arguments
+    Then the parameter "done" is called with the 2nd parameter matching the orderly schema
       """
-      null,
-      [{
-        type: 'error',
-        message: 'http://localhost:5000/ 1:17 my error',
-      }]
+      array {
+        object {
+          string type["error"];
+          string message["my error"];
+          string url["http://localhost:5000/"];
+          number line;
+          number column;
+          number timestamp;
+        }
+      }
       """
 
 
@@ -52,23 +63,24 @@ Feature: Getting browser logs
       | console.log('my message')       |
       | console.log('my other message') |
     And I run "browser.getLogs done"
-    Then it calls done with the arguments
+    Then the parameter "done" is called with the 2nd parameter matching the orderly schema
       """
-      null,
-      [{
-        type: 'log',
-        message: 'my message',
-        url: 'http://localhost:5000',
-        line: <NUMBER>,
-        column: <NUMBER>,
-        timestamp: <DATE>
-      },
-      {
-        type: 'log',
-        message: 'my other message',
-        url: 'http://localhost:5000',
-        line: <NUMBER>,
-        column: <NUMBER>,
-        timestamp: <DATE>
-      }]
+      array {
+        object {
+          string type["log"];
+          string message["my message"];
+          string url["http://localhost:5000/"];
+          number line;
+          number column;
+          number timestamp;
+        };
+        object {
+          string type["log"];
+          string message["my other message"];
+          string url["http://localhost:5000/"];
+          number line;
+          number column;
+          number timestamp;
+        }
+      }
       """

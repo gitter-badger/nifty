@@ -38,7 +38,6 @@ module.exports = ->
 
   @When /^the webpage I am on runs$/, (javascriptCommands, done) ->
     javascript = (command[0] for command in javascriptCommands.raw()).join ';'
-    console.log javascript
     @testWebServer.respondWith "<script>#{javascript}</script>"
     @browser.visit '/', done
 
