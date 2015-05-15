@@ -12,7 +12,11 @@ Feature: Getting browser logs
       null,
       [{
         type: 'log',
-        message: 'http://localhost:5000/ 1:17 my message',
+        message: 'my message',
+        url: 'http://localhost:5000',
+        line: <NUMBER>,
+        column: <NUMBER>,
+        timestamp: <DATE>
       }]
       """
 
@@ -31,7 +35,7 @@ Feature: Getting browser logs
 
 
   Scenario: Getting console.error output
-    When the webpage I am on logs an error: "my error"
+    When the web page in my browser runs "console.log('my message')"
     And I run "browser.getLogs done"
     Then it calls done with the arguments
       """
@@ -39,5 +43,32 @@ Feature: Getting browser logs
       [{
         type: 'error',
         message: 'http://localhost:5000/ 1:17 my error',
+      }]
+      """
+
+
+  Scenario: Getting multiple logs
+    When the web page in my browser runs "console.log('my message')"
+      | console.log('my message')       |
+      | console.log('my other message') |
+    And I run "browser.getLogs done"
+    Then it calls done with the arguments
+      """
+      null,
+      [{
+        type: 'log',
+        message: 'my message',
+        url: 'http://localhost:5000',
+        line: <NUMBER>,
+        column: <NUMBER>,
+        timestamp: <DATE>
+      },
+      {
+        type: 'log',
+        message: 'my other message',
+        url: 'http://localhost:5000',
+        line: <NUMBER>,
+        column: <NUMBER>,
+        timestamp: <DATE>
       }]
       """
