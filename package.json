@@ -17,7 +17,9 @@
     "chai": "^2.2.0",
     "coffee-script": "^1.9.2",
     "cucumber": "^0.4.8",
-    "express": "^4.12.3"
+    "express": "^4.12.3",
+    "sinon": "^1.14.1",
+    "sinon-chai": "^2.7.0"
   },
   "dependencies": {
     "chromedriver": "2.10.0",

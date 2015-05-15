@@ -5,20 +5,14 @@ Feature: Clicking on DOM elements
 
 
   Scenario: Clicking on existing elements
-    Given I am on a page with the html
-      """
-      <button>click me</button>
-      """
+    Given I am on a page with the HTML "<button>click me</button>"
     When I run "browser.$('button').click done"
-    Then the "button" tag is clicked
-    And it calls done with no arguments
+    Then the <button> tag is clicked
+    And the parameter "done" is called with no arguments
 
 
   Scenario: Clicking on non-existent elements
-    Given I am on a page with the html
-      """
-      <div>click me</div>
-      """
+    Given I am on a page with the HTML "<div>click me</div>"
     When I run "browser.$('span').click done"
     Then there are no click events
-    And it calls done with no arguments
+    And the parameter "done" is called with no arguments
