@@ -5,7 +5,7 @@ Feature: Getting browser logs
 
 
   Scenario: Getting console.log output
-    When the webpage I am on logs a message: "my message"
+    When the webpage I am on runs `console.log('my message')`
     And I run "browser.getLogs done"
     Then it calls done with the arguments
       """
@@ -22,7 +22,7 @@ Feature: Getting browser logs
 
 
   Scenario: Getting console.warn output
-    When the webpage I am on logs a warning: "my warning"
+    When the webpage I am on runs `console.warn('my message')`
     And I run "browser.getLogs done"
     Then it calls done with the arguments
       """
@@ -35,7 +35,7 @@ Feature: Getting browser logs
 
 
   Scenario: Getting console.error output
-    When the web page in my browser runs "console.log('my message')"
+    When the webpage I am on runs `console.error('my message')`
     And I run "browser.getLogs done"
     Then it calls done with the arguments
       """
@@ -48,7 +48,7 @@ Feature: Getting browser logs
 
 
   Scenario: Getting multiple logs
-    When the web page in my browser runs "console.log('my message')"
+    When the webpage I am on runs
       | console.log('my message')       |
       | console.log('my other message') |
     And I run "browser.getLogs done"

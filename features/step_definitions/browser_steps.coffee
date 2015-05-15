@@ -31,12 +31,15 @@ module.exports = ->
     done()
 
 
-  @When /^the webpage I am on logs an? (message|warning|error): "([^"]+)"$/, (type, message, done) ->
-    method = switch type
-      when 'message' then 'log'
-      when 'warning' then 'warn'
-      when 'error' then 'error'
-    @testWebServer.respondWith "<script>console.#{method}(#{JSON.stringify message});</script>"
+  @When /^the webpage I am on runs `([^`]+)`$/, (javascript, done) ->
+    @testWebServer.respondWith "<script>#{javascript}</script>"
+    @browser.visit '/', done
+
+
+  @When /^the webpage I am on runs$/, (javascriptCommands, done) ->
+    javascript = (command[0] for command in javascriptCommands.raw()).join ';'
+    console.log javascript
+    @testWebServer.respondWith "<script>#{javascript}</script>"
     @browser.visit '/', done
 
 

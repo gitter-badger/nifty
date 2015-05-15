@@ -1,6 +1,5 @@
 module.exports = ->
 
-
   @Then /^the parameter "done" is called with (?:no arguments|the arguments `([^`]+)`)?$/, (args, done) ->
     expect(@done).to.have.been.calledOnce
     if args?
