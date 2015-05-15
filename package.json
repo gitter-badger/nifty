@@ -22,7 +22,7 @@
     "sinon-chai": "^2.7.0"
   },
   "dependencies": {
-    "chromedriver": "2.14.0",
+    "chromedriver": "2.13.0",
     "coffee-script": "^1.8.0",
     "lodash": "^3.7.0",
     "selenium-webdriver": "2.44.0"
