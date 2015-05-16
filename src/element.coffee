@@ -1,5 +1,5 @@
 Asyncify = require './asyncify'
-{By} = require 'selenium-webdriver'
+{By, promise} = require 'selenium-webdriver'
 
 class Element extends Asyncify
 
@@ -12,6 +12,12 @@ class Element extends Asyncify
   asyncify:
     click: ->
       @element.click()
+
+
+    is: (condition) ->
+      switch condition
+        when ':visible' then @element.isDisplayed()
+        when ':hidden' then promise.when @element.isDisplayed(), (visible) => not visible
 
 
     text: ->
