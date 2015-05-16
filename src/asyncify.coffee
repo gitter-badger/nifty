@@ -14,6 +14,8 @@ class Asyncify
 
 
   _nodeify: (callback, promise) ->
+    callback() unless promise?
+
     if promise instanceof Error
       return callback promise
 
