@@ -38,6 +38,17 @@ module.exports = ->
     done()
 
 
+  @When /^the webpage I am on runs `([^`]+)`$/, (javascript, done) ->
+    @testWebServer.respondWith "<script>#{javascript}</script>"
+    @browser.visit '/', done
+
+
+  @When /^the webpage I am on runs$/, (javascriptCommands, done) ->
+    javascript = (command[0] for command in javascriptCommands.raw()).join ';'
+    @testWebServer.respondWith "<script>#{javascript}</script>"
+    @browser.visit '/', done
+
+
   @Then /^there are no (click) events$/, (eventType, done) ->
     expect(@testWebServer.getEvents event: eventType).to.be.empty
     done()

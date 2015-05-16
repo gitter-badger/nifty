@@ -1,20 +1,41 @@
 _ = require 'lodash'
 Asyncify = require './asyncify'
+chrome = require 'selenium-webdriver/chrome'
+chromeDriverPath = require('chromedriver').path
 Element = require './element'
 url = require 'url'
 webdriver = require 'selenium-webdriver'
+chrome.setDefaultService new chrome.ServiceBuilder(chromeDriverPath).build()
 
 
 class Browser extends Asyncify
+
+  mapLog = (log) ->
+    [match, pageUrl, line, column, message] = log.message.match /^([^ ]+) (\d+):(\d+) (.+)/
+    type = { INFO: 'log', WARNING: 'warn', SEVERE: 'error' }[log.level.name]
+    {
+      type, message
+      url: pageUrl
+      line: parseInt line
+      column: parseInt column
+      timestamp: log.timestamp
+    }
+
 
   constructor: (host) ->
     @setHost host
     super
     process.on 'exit', @close
 
-    @driver = new webdriver.Builder()
-                           .withCapabilities webdriver.Capabilities.chrome()
-                           .build()
+    @driver = new chrome.Driver
+      loggingPrefs:
+        browser: 'ALL'
+
+
+  getLogs: (done) ->
+    logs = new webdriver.WebDriver.Logs(@driver).get 'browser'
+    logs.then (logs) -> done null, logs.map mapLog
+    logs.thenCatch (err) -> done err
 
 
   $: (selector) =>
