@@ -33,6 +33,11 @@ module.exports = ->
     done()
 
 
+  @Then /^my browser captured the shortcut "([^"]+)"$/, (shortcut, done) ->
+    expect(@testWebServer.getEvents {event: 'keydown', shortcut}).to.have.length 1
+    done()
+
+
   @Then /^the <([^"]+)> tag is clicked$/, (tagName, done) ->
     expect(@testWebServer.getEvents event: 'click', tag: tagName).to.have.length 1
     done()
