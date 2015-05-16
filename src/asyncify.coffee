@@ -14,10 +14,8 @@ class Asyncify
 
 
   _nodeify: (callback, promise) ->
-    callback() unless promise?
-
-    if promise instanceof Error
-      return callback promise
+    return callback() unless promise?
+    return callback promise if promise instanceof Error
 
     promise.then (data) -> callback null, data
            .thenCatch (err) -> callback err
