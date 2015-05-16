@@ -15,6 +15,13 @@ module.exports = ->
     @browser.visit '/', done
 
 
+  @Then /^<textarea> has the value "([^"]+)"$/, (expectedValue, done) ->
+    @browser.$('textarea').val (err, value) ->
+      return done err if err
+      expect(value).to.equal expectedValue
+      done()
+
+
 
   @Then /^my browser makes a request to "([^"]+)"$/, (url, done) ->
     expect(@testWebServer.requestHistory).to.contain url

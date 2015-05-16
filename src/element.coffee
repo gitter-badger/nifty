@@ -14,8 +14,16 @@ class Element extends Asyncify
       @element.click()
 
 
+    sendKeys: (keys) ->
+      @element.sendKeys keys
+
+
     text: ->
       @element.getText()
+
+
+    val: ->
+      @element.getAttribute 'value'
 
 
 module.exports = Element

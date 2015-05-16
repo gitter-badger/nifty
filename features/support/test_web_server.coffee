@@ -46,7 +46,15 @@ class TestWebServer
     , done
 
 
-  respondWith: (@respondWithHtml) ->
+  respondWith: (respondWith) ->
+    @respondWithHtml = """
+      <!DOCTYPE html>
+      <html>
+        <body>
+          #{respondWith}
+        </body>
+      </html>
+    """
 
 
   _handleLogEvent: (req, res) =>
