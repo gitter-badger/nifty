@@ -11,5 +11,5 @@ module.exports = ->
 
 
   @When /^I run "([^"]+)"$/, (coffeeExpression, done) ->
-    @done = sinon.spy -> done()
+    @done = sinon.spy -> setTimeout done, 10
     runCoffee coffeeExpression, {@browser, @done}
