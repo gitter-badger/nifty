@@ -4,7 +4,7 @@ runCoffee = require '../support/run_coffee'
 
 module.exports = ->
 
-  @Given /^I create a Sanelenium instance by running "([^"]+)"$/, (coffeeExpression, done) ->
+  @Given /^I create a Sanelenium instance by running "browser = ([^"]+)"$/, (coffeeExpression, done) ->
     @browser = runCoffee coffeeExpression, {Browser}
     @cleanupTasks.push @browser.close()
     done()

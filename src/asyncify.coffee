@@ -17,11 +17,11 @@ class Asyncify
     return callback() unless promise?
     return callback promise if promise instanceof Error
 
-    promise.then (data) ->
+    promise.then((data) ->
       # Run the callback in a separate tick otherwise if the callback throws
       # thenCatch gets called resulting in callback being called twice
       process.nextTick -> callback null, data
-    promise.thenCatch (err) -> callback err
+    ).thenCatch (err) -> callback err
 
 
 module.exports = Asyncify
