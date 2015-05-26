@@ -22,10 +22,10 @@
     "sinon-chai": "^2.7.0"
   },
   "dependencies": {
-    "chromedriver": "2.10.0",
+    "chromedriver": "2.15.1",
     "coffee-script": "^1.8.0",
     "lodash": "^3.7.0",
-    "selenium-webdriver": "2.43.5"
+    "selenium-webdriver": "2.45.1"
   },
   "homepage": "https://github.com/originate/sanelenium",
   "scripts": {
