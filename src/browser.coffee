@@ -1,8 +1,11 @@
 _ = require 'lodash'
 Asyncify = require './asyncify'
+chrome = require 'selenium-webdriver/chrome'
+chromeDriverPath = require('chromedriver').path
 Element = require './element'
 url = require 'url'
 webdriver = require 'selenium-webdriver'
+chrome.setDefaultService new chrome.ServiceBuilder(chromeDriverPath).build()
 
 
 class Browser extends Asyncify
@@ -12,9 +15,7 @@ class Browser extends Asyncify
     super
     process.on 'exit', @close
 
-    @driver = new webdriver.Builder()
-                           .withCapabilities webdriver.Capabilities.chrome()
-                           .build()
+    @driver = new chrome.Driver()
 
 
   $: (selector) =>
