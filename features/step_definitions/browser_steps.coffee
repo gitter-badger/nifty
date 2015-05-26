@@ -15,6 +15,13 @@ module.exports = ->
     @browser.visit '/', done
 
 
+  @Then /^the <textarea> on my page has the value "([^"]+)"$/, (expectedValue, done) ->
+    @browser.$('textarea').val (err, value) ->
+      return done err if err
+      expect(value).to.equal expectedValue
+      done()
+
+
 
   @Then /^my browser makes a request to "([^"]+)"$/, (url, done) ->
     expect(@testWebServer.requestHistory).to.contain url
@@ -23,6 +30,11 @@ module.exports = ->
 
   @Then /^my browser makes no requests$/, (done) ->
     expect(@testWebServer.requestHistory).to.be.empty
+    done()
+
+
+  @Then /^my browser captured the shortcut "([^"]+)"$/, (shortcut, done) ->
+    expect(@testWebServer.getEvents {event: 'keydown', shortcut}).to.have.length 1
     done()
 
 

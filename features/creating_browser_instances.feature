@@ -6,12 +6,12 @@ Feature: Creating Sanelenium instances
 
 
   Scenario: providing the URL as a string
-    Given I create a Sanelenium instance by running "new Browser 'http://example.com:5000'"
+    Given I create a Sanelenium instance by running "browser = new Browser 'http://example.com:5000'"
     Then this instance is pointing to "http://example.com:5000"
 
 
   Scenario Outline: providing the URL as an object
-    Given I create a Sanelenium instance by running "new Browser <CONSTRUCTOR ARGUMENTS>"
+    Given I create a Sanelenium instance by running "browser = new Browser <CONSTRUCTOR ARGUMENTS>"
     Then this instance is pointing to "<HOST>"
 
     Examples:
@@ -24,5 +24,5 @@ Feature: Creating Sanelenium instances
 
 
   Scenario: creating an uncustomized instance
-    Given I create a Sanelenium instance by running "new Browser()"
+    Given I create a Sanelenium instance by running "browser = new Browser()"
     Then this instance has no default host configured

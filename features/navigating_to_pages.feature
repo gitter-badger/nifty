@@ -2,7 +2,7 @@ Feature: Navigating to Pages
 
 
   Background:
-    Given I create a Sanelenium instance by running "new Browser 'http://localhost:5000'"
+    Given I create a Sanelenium instance by running "browser = new Browser 'http://localhost:5000'"
 
 
   Scenario: Handling illegal arguments
