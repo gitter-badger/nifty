@@ -33,6 +33,8 @@ class Browser extends Asyncify
 
     close: ->
       return if @closed
+      # Remove exit listener to prevent EventEmitter from reporting a memory leak
+      process.removeListener 'exit', @close
       @closed = yes
       @driver.quit()
 
