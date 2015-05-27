@@ -39,6 +39,10 @@ class Browser extends Asyncify
       @driver.quit()
 
 
+    eval: (javascript) ->
+      @driver.executeScript javascript
+
+
     visit: (pathname) ->
       try
         @driver.get url.format _.defaults(

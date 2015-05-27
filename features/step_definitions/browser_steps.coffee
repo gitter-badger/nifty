@@ -15,6 +15,11 @@ module.exports = ->
     @browser.visit '/', done
 
 
+  @Given /^I visit a page$/, (done) ->
+    @testWebServer.respondWith ""
+    @browser.visit '/', done
+
+
   @Then /^the <textarea> on my page has the value "([^"]+)"$/, (expectedValue, done) ->
     @browser.$('textarea').val (err, value) ->
       return done err if err

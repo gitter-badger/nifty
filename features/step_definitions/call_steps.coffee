@@ -16,4 +16,6 @@ module.exports = ->
     done()
 
 
-
+  @Then /^the "([^"]+)" javascript function is called in my browser$/, (functionName, done) ->
+    expect(@testWebServer.getEvents event: 'functionCall', functionName: functionName).to.have.length 1
+    done()
