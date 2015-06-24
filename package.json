@@ -1,6 +1,6 @@
 {
   "name": "nifty",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "scripts": {
     "feature-tests": "cucumber-js -r features/step_definitions",
