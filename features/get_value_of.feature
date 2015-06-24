@@ -8,8 +8,8 @@ Feature: Getting a value of input elements
     Given I am on a page with the HTML "<input value='foo bar'>"
     When I run
       """
-      browser.getValueOf 'input', spy
-             .finally done
+      niftyBrowser.getValueOf 'input', spy
+                  .finally done
       """
     Then "spy" is called with the arguments `"foo bar"`
     Then the parameter "done" is called with the arguments `null`
@@ -19,8 +19,8 @@ Feature: Getting a value of input elements
     Given I am on a page with the HTML "<textarea>fizz buzz</textarea>"
     When I run
       """
-      browser.getValueOf 'textarea', spy
-             .finally done
+      niftyBrowser.getValueOf 'textarea', spy
+                  .finally done
       """
     Then "spy" is called with the arguments `"fizz buzz"`
     Then the parameter "done" is called with the arguments `null`
@@ -30,8 +30,8 @@ Feature: Getting a value of input elements
     Given I am on an empty page
     When I run
       """
-      browser.getValueOf 'textarea', spy
-             .finally done
+      niftyBrowser.getValueOf 'textarea', spy
+                  .finally done
       """
     Then "spy" is never called
     And "done" is called with the error "no such element"

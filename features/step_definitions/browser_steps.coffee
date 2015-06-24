@@ -1,5 +1,5 @@
 _ = require 'lodash'
-Browser = require '../../src/browser'
+Nifty = require '../..'
 url = require 'url'
 
 
@@ -7,25 +7,25 @@ module.exports = ->
 
   @Given /^I am on a page with the HTML$/, (html, done) ->
     @testWebServer.respondWith html
-    @browser.visit '/'
-            .finally done
+    @niftyBrowser.visit '/'
+                 .finally done
 
 
   @Given /^I am on a page with the HTML "([^"]+)"$/, (html, done) ->
     @testWebServer.respondWith html
-    @browser.visit '/'
-            .finally done
+    @niftyBrowser.visit '/'
+                 .finally done
 
 
   @Given /^I am on an empty page$/, (done) ->
     @testWebServer.respondWith ''
-    @browser.visit '/'
-            .finally done
+    @niftyBrowser.visit '/'
+                 .finally done
 
 
   @Then /^the <textarea> on my page has the value "([^"]+)"$/, (expectedValue, done) ->
-    @browser.getValueOf 'textarea', (value) -> expect(value).to.equal expectedValue
-            .finally done
+    @niftyBrowser.getValueOf 'textarea', (value) -> expect(value).to.equal expectedValue
+                 .finally done
 
 
 
@@ -55,13 +55,13 @@ module.exports = ->
 
 
   @Then /^this instance has no default host configured$/, (done) ->
-    expect(@browser).to.be.an.instanceOf Browser
-    expect(url.format @browser._context.host).to.equal ''
+    expect(@niftyBrowser).to.be.an.instanceOf Nifty.Browser
+    expect(url.format @niftyBrowser._context.host).to.equal ''
     done()
 
 
   @Then /^this instance is pointing to "([^"]+)"$/, (server, done) ->
-    expect(@browser).to.be.an.instanceOf Browser
-    host = _.omit @browser._context.host, 'pathname'
+    expect(@niftyBrowser).to.be.an.instanceOf Nifty.Browser
+    host = _.omit @niftyBrowser._context.host, 'pathname'
     expect(url.format host).to.equal server
     done()

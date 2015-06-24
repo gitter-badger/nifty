@@ -8,8 +8,8 @@ Feature: Sending keyboard shortcuts
     Given I am on an empty page
     When I run
       """
-      browser.sendShortcut 'body', 'ctrl+v'
-             .finally done
+      niftyBrowser.sendShortcut 'body', 'ctrl+v'
+                  .finally done
       """
     Then my browser receives the shortcut "ctrl+v"
     And the parameter "done" is called with the arguments `null`

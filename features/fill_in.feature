@@ -8,8 +8,8 @@ Feature: Sending keypresses to a webpage
     Given I am on a page with the HTML "<textarea></textarea>"
     When I run
       """
-      browser.fillIn 'textarea', with: 'hello browser'
-             .finally done
+      niftyBrowser.fillIn 'textarea', with: 'hello browser'
+                  .finally done
       """
     Then the <textarea> on my page has the value "hello browser"
     And the parameter "done" is called with the arguments `null`
@@ -19,8 +19,8 @@ Feature: Sending keypresses to a webpage
     Given I am on an empty page
     When I run
       """
-      browser.fillIn 'textarea', spy
-             .finally done
+      niftyBrowser.fillIn 'textarea', spy
+                  .finally done
       """
     Then "spy" is never called
     And "done" is called with the error "no such element"

@@ -12,8 +12,8 @@ Feature: Reading the text of DOM elements
       """
       When I run
         """
-        browser.getText 'div', spy
-               .finally done
+        niftyBrowser.getText 'div', spy
+                    .finally done
         """
     Then "spy" is called with the arguments `"This is the text"`
     And "done" is called with the arguments `null`
