@@ -1,18 +1,19 @@
+rewire = require 'rewire'
 Command = require './command'
-CommandQueue = require './command_queue'
+CommandQueue = rewire './command_queue'
 
 
 describe 'CommandQueue', ->
 
   beforeEach ->
-    commands =
+    CommandQueue.__set__ 'CommandLoader', MockCommandLoader = ->
+    MockCommandLoader::getCommands = =>
       foo: new Command 'foo', @fooSpy = sinon.spy (done) -> setTimeout done
       bar: new Command 'bar', @barSpy = sinon.spy (done) -> setTimeout done
       baz: new Command 'baz', @bazSpy = sinon.spy (done) -> setTimeout done
       call: new Command 'call', async: no, (fn) -> fn()
 
-    @context = {}
-    @commandQueue = new CommandQueue {commands, @context}
+    @commandQueue = new CommandQueue @context = {}
 
 
   describe 'chaining commands', ->

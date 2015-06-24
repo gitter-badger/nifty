@@ -4,8 +4,19 @@ path = require 'path'
 
 class CommandLoader
 
+  # Directories to look for commands in
+  @searchDirectories: [
+    path.join __dirname, 'commands'
+  ]
+
+
   constructor: ->
     @commands = {}
+
+
+  getCommands: ->
+    @loadDirectory directory for directory in CommandLoader.searchDirectories
+    @commands
 
 
   loadCommand: (filePath) ->

@@ -1,11 +1,16 @@
+CommandLoader = require './command_loader'
+
+
 class CommandQueue
 
-  constructor: ({@commands, @context}) ->
+  constructor: (@context) ->
     @commandQueue = []
     @commandQueueRunning = no
     @wrappedCommands = {}
 
+    @commands = new CommandLoader().getCommands()
     @wrapCommand commandName for own commandName of @commands
+
     return @wrappedCommands
 
 

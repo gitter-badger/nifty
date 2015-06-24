@@ -1,7 +1,6 @@
 _ = require 'lodash'
 chrome = require 'selenium-webdriver/chrome'
 chromeDriverPath = require('chromedriver').path
-CommandLoader = require './command_loader'
 CommandQueue = require './command_queue'
 path = require 'path'
 url = require 'url'
@@ -12,9 +11,6 @@ chrome.setDefaultService new chrome.ServiceBuilder(chromeDriverPath).build()
 class Browser
 
   constructor: (host) ->
-    commandLoader = new CommandLoader
-    commandLoader.loadDirectory path.join(__dirname, 'commands')
-
     # Object all commands are called on
     @_context =
       browser: this
@@ -23,9 +19,7 @@ class Browser
       host: parseHost host
 
     # Copy command queue commands to this instance
-    _.extend this, new CommandQueue
-      commands: commandLoader.commands
-      context: @_context
+    _.extend this, new CommandQueue @_context
 
 
   parseHost = (host) ->
