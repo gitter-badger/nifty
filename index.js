@@ -1,3 +1,3 @@
 require('coffee-script/register');
 
-module.exports = require('./src/sanelenium');
+module.exports = require('./src/nifty');

@@ -1,17 +1,17 @@
-Feature: Creating Sanelenium instances
+Feature: Creating Nifty instances
 
-  As a developer creating a Sanelenium instance
+  As a developer creating a Nifty instance
   I want to be able to provide the host to browse using standard Node.js conventions for URLs
-  So that I can use Sanelenium like any other Node.js module.
+  So that I can use Nifty like any other Node.js module.
 
 
   Scenario: providing the URL as a string
-    Given I create a Sanelenium instance by running "browser = new Browser 'http://example.com:5000'"
+    Given I create a Nifty browser instance by running "niftyBrowser = new Nifty.Browser 'http://example.com:5000'"
     Then this instance is pointing to "http://example.com:5000"
 
 
   Scenario Outline: providing the URL as an object
-    Given I create a Sanelenium instance by running "browser = new Browser <CONSTRUCTOR ARGUMENTS>"
+    Given I create a Nifty browser instance by running "niftyBrowser = new Nifty.Browser <CONSTRUCTOR ARGUMENTS>"
     Then this instance is pointing to "<HOST>"
 
     Examples:
@@ -24,5 +24,5 @@ Feature: Creating Sanelenium instances
 
 
   Scenario: creating an uncustomized instance
-    Given I create a Sanelenium instance by running "browser = new Browser()"
+    Given I create a Nifty browser instance by running "niftyBrowser = new Nifty.Browser()"
     Then this instance has no default host configured

@@ -1,6 +1,4 @@
-# Sanelenium
-
-A more usable API for [Selenium-Webdriver](https://www.npmjs.com/package/selenium-webdriver).
+# Nifty
 
 For details on how to use this, please refer to our very readable feature specs:
 * [creating browser instances](features/creating_browser_instances.feature)

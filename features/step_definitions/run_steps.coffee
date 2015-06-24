@@ -1,11 +1,11 @@
-Browser = require '../../src/browser'
+Nifty = require '../..'
 runCoffee = require '../support/run_coffee'
 
 
 module.exports = ->
 
-  @Given /^I create a Sanelenium instance by running "browser = ([^"]+)"$/, (coffeeExpression, done) ->
-    @browser = runCoffee coffeeExpression, {Browser}
+  @Given /^I create a Nifty browser instance by running "niftyBrowser = ([^"]+)"$/, (coffeeExpression, done) ->
+    @browser = runCoffee coffeeExpression, {Nifty}
     @cleanupTasks.push (done) => @browser.close().finally done
     done()
 

@@ -1,5 +1,5 @@
 {
-  "name": "sanelenium",
+  "name": "nifty",
   "version": "0.0.3",
   "description": "",
   "scripts": {
@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/originate/sanelenium.git"
+    "url": "git://github.com/originate/nifty.git"
   },
   "author": "Alex David",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/originate/sanelenium/issues"
+    "url": "https://github.com/originate/nifty/issues"
   },
   "devDependencies": {
     "async": "^0.9.0",
@@ -35,5 +35,5 @@
     "robust-callbacks": "^0.0.5",
     "selenium-webdriver": "2.43.5"
   },
-  "homepage": "https://github.com/originate/sanelenium"
+  "homepage": "https://github.com/originate/nifty"
 }

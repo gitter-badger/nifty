@@ -1,7 +1,7 @@
 Feature: Getting a value of input elements
 
   Background:
-    Given I create a Sanelenium instance by running "browser = new Browser 'http://localhost:5000'"
+    Given I create a Nifty browser instance by running "niftyBrowser = new Nifty.Browser 'http://localhost:5000'"
 
 
   Scenario: Reading the value of <input>
