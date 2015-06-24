@@ -1,3 +1,4 @@
 module.exports =
-  Command: require './command'
   Browser: require './browser'
+  Command: require './command'
+  CommandLoader: require './command_loader'
