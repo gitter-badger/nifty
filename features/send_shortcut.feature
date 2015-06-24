@@ -5,7 +5,11 @@ Feature: Sending keyboard shortcuts
 
 
   Scenario:
-    Given I am on a page with the HTML "<div></div>"
-    When I run "browser.$('body').sendShortcut 'ctrl+v', done"
-    Then the parameter "done" is called with no arguments
-    And my browser captured the shortcut "ctrl+v"
+    Given I am on an empty page
+    When I run
+      """
+      browser.sendShortcut 'body', 'ctrl+v'
+             .finally done
+      """
+    Then my browser receives the shortcut "ctrl+v"
+    And the parameter "done" is called with the arguments `null`

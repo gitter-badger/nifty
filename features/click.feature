@@ -6,13 +6,13 @@ Feature: Clicking on DOM elements
 
   Scenario: Clicking on existing elements
     Given I am on a page with the HTML "<button>click me</button>"
-    When I run "browser.$('button').click done"
+    When I run "browser.click('button').finally done"
     Then the <button> tag is clicked
-    And the parameter "done" is called with no arguments
+    And the parameter "done" is called with the arguments `null`
 
 
   Scenario: Clicking on non-existent elements
     Given I am on a page with the HTML "<div>click me</div>"
-    When I run "browser.$('span').click done"
+    When I run "browser.click('span').finally done"
     Then there are no click events
-    And the parameter "done" is called with no arguments
+    And the parameter "done" is called with the error "no such element"

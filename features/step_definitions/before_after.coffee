@@ -10,6 +10,10 @@ global.expect = chai.expect
 module.exports = ->
 
   @Before (done) ->
+    @spies =
+      spy: sinon.spy()
+      done: sinon.spy()
+
     @testWebServer = new TestWebServer
     @cleanupTasks = []
     @cleanupTasks.push @testWebServer.close

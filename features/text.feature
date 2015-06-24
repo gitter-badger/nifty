@@ -10,5 +10,10 @@ Feature: Reading the text of DOM elements
       """
       <div>This is <strong>the</strong> text</div>
       """
-    When I run "browser.$('div').text done"
-    Then the parameter "done" is called with the arguments `null, "This is the text"`
+      When I run
+        """
+        browser.getText 'div', spy
+               .finally done
+        """
+    Then "spy" is called with the arguments `"This is the text"`
+    And "done" is called with the arguments `null`

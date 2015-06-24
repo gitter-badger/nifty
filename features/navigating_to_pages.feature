@@ -6,6 +6,6 @@ Feature: Navigating to Pages
 
 
   Scenario: Handling illegal arguments
-    When I run "browser.visit [], done"
+    When I run "browser.visit([]).finally done"
     Then my browser makes no requests
     And the parameter "done" is called with the error "Cannot visit []"

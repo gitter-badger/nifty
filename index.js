@@ -1,3 +1,3 @@
 require('coffee-script/register');
 
-exports.Browser = require('./src/browser');
+module.exports = require('./src/sanelenium');

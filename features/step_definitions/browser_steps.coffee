@@ -7,19 +7,25 @@ module.exports = ->
 
   @Given /^I am on a page with the HTML$/, (html, done) ->
     @testWebServer.respondWith html
-    @browser.visit '/', done
+    @browser.visit '/'
+            .finally done
 
 
   @Given /^I am on a page with the HTML "([^"]+)"$/, (html, done) ->
     @testWebServer.respondWith html
-    @browser.visit '/', done
+    @browser.visit '/'
+            .finally done
+
+
+  @Given /^I am on an empty page$/, (done) ->
+    @testWebServer.respondWith ''
+    @browser.visit '/'
+            .finally done
 
 
   @Then /^the <textarea> on my page has the value "([^"]+)"$/, (expectedValue, done) ->
-    @browser.$('textarea').val (err, value) ->
-      return done err if err
-      expect(value).to.equal expectedValue
-      done()
+    @browser.getValueOf 'textarea', (value) -> expect(value).to.equal expectedValue
+            .finally done
 
 
 
@@ -33,7 +39,7 @@ module.exports = ->
     done()
 
 
-  @Then /^my browser captured the shortcut "([^"]+)"$/, (shortcut, done) ->
+  @Then /^my browser receives the shortcut "([^"]+)"$/, (shortcut, done) ->
     expect(@testWebServer.getEvents {event: 'keydown', shortcut}).to.have.length 1
     done()
 
@@ -50,12 +56,12 @@ module.exports = ->
 
   @Then /^this instance has no default host configured$/, (done) ->
     expect(@browser).to.be.an.instanceOf Browser
-    expect(url.format @browser.host).to.equal ''
+    expect(url.format @browser._context.host).to.equal ''
     done()
 
 
   @Then /^this instance is pointing to "([^"]+)"$/, (server, done) ->
     expect(@browser).to.be.an.instanceOf Browser
-    host = _.omit @browser.host, 'pathname'
+    host = _.omit @browser._context.host, 'pathname'
     expect(url.format host).to.equal server
     done()
