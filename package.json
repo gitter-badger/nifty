@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "feature-tests": "cucumber-js -r features/step_definitions",
-    "test": "npm run unit-tests && npm run feature-tests",
+    "lint-dependencies": "dependency-lint",
+    "test": "npm run lint-dependencies && npm run unit-tests && npm run feature-tests",
     "unit-tests": "mycha"
   },
   "repository": {
@@ -22,6 +23,7 @@
     "chai": "^3.0.0",
     "coffee-script": "^1.9.2",
     "cucumber": "^0.4.8",
+    "dependency-lint": "^2.0.0",
     "express": "^4.12.3",
     "mycha": "^0.9.1",
     "rewire": "^2.3.4",
