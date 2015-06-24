@@ -1,12 +1,9 @@
-{By} = require 'selenium-webdriver'
-Command = require '../command'
+Nifty = require '../..'
 nodeify = require 'nodeify'
 
 
-module.exports = new Command 'getText', (selector, callback, done) ->
-  promise = @driver.findElement By.css selector
-                   .getText()
-
+module.exports = new Nifty.Command 'getText', (selector, callback, done) ->
+  promise = @findElement(selector).getText()
   nodeify promise, (err, text) =>
     return done err if err
     callback.call this, text

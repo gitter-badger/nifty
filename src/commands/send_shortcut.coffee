@@ -1,5 +1,5 @@
-{By, Key} = require 'selenium-webdriver'
-Command = require '../command'
+{Key} = require 'selenium-webdriver'
+Nifty = require '../..'
 nodeify = require 'nodeify'
 
 
@@ -14,11 +14,9 @@ getModifier = (keyName) ->
       else keyName
 
 
-module.exports = new Command 'sendShortcut', (selector, shortcut, done) ->
+module.exports = new Nifty.Command 'sendShortcut', (selector, shortcut, done) ->
   keys = shortcut.split '+'
                  .map getModifier
 
-  promise = @driver.findElement By.css selector
-                   .sendKeys Key.chord keys...
-
+  promise = @findElement(selector).sendKeys Key.chord keys...
   nodeify promise, done

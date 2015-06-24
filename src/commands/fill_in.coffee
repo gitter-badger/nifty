@@ -1,12 +1,9 @@
-{By} = require 'selenium-webdriver'
-Command = require '../command'
+Nifty = require '../..'
 nodeify = require 'nodeify'
 
 
-module.exports = new Command 'fillIn', (selector, opts, done) ->
+module.exports = new Nifty.Command 'fillIn', (selector, opts, done) ->
   text = opts.with
 
-  promise = @driver.findElement By.css selector
-                   .sendKeys text
-
+  promise = @findElement(selector).sendKeys text
   nodeify promise, done

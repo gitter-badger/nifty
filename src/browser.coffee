@@ -1,4 +1,5 @@
 _ = require 'lodash'
+{By} = require 'selenium-webdriver'
 chrome = require 'selenium-webdriver/chrome'
 chromeDriverPath = require('chromedriver').path
 CommandQueue = require './command_queue'
@@ -12,17 +13,25 @@ class Browser
 
   constructor: (host) ->
     # Object all commands are called on
-    @_context =
+    @_context = _.extend {}, Browser.commandMethods,
       browser: this
       driver: new chrome.Driver()
       error: null
-      host: parseHost host
+      host: Browser.parseHost host
 
     # Copy command queue commands to this instance
     _.extend this, new CommandQueue @_context
 
 
-  parseHost = (host) ->
+  # These command methods are injected into @_context and are available in commands under `this`
+  @commandMethods:
+
+    # Returns a selenium promise for the element of the passed selector
+    findElement: (selector) ->
+      @driver.findElement By.css selector
+
+
+  @parseHost = (host) ->
     host = url.parse host if typeof host is 'string'
 
     # Default to the http protocol if not provided

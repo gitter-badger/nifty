@@ -1,6 +1,6 @@
-Command = require '../command'
+Nifty = require '../..'
 nodeify = require 'nodeify'
 
 
-module.exports = new Command 'close', (done) ->
+module.exports = new Nifty.Command 'close', (done) ->
   nodeify @driver.quit(), done
