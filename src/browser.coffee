@@ -1,11 +1,12 @@
 _ = require 'lodash'
 chrome = require 'selenium-webdriver/chrome'
-chrome.setDefaultService new chrome.ServiceBuilder(chromeDriverPath).build()
 chromeDriverPath = require('chromedriver').path
 CommandLoader = require './command_loader'
 CommandQueue = require './command_queue'
 path = require 'path'
 url = require 'url'
+
+chrome.setDefaultService new chrome.ServiceBuilder(chromeDriverPath).build()
 
 
 class Browser
