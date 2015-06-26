@@ -28,7 +28,9 @@ class Browser
 
     # Returns a selenium promise for the element of the passed selector
     findElement: (selector) ->
-      @driver.findElement By.css selector
+      if typeof(selector) is 'string'
+        return @driver.findElement By.css selector
+      return @driver.findElement By.xpath "//" + selector.element + "[contains(text(), '" + selector.withText+"')]"
 
 
   @parseHost = (host) ->

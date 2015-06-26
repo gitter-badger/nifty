@@ -24,3 +24,13 @@ Feature: Clicking on DOM elements
       """
     Then there are no click events
     And the parameter "done" is called with the error "no such element"
+
+  Scenario: Clicking element based on text
+    Given I am on a page with the HTML "<button>click me</button>"
+    When I run
+      """
+      niftyBrowser.click {element: 'button', withText: 'click me'}
+                  .finally done
+      """
+      Then the <button> tag is clicked
+      And the parameter "done" is called with the error "no such element"
