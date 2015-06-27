@@ -33,4 +33,14 @@ Feature: Clicking on DOM elements
                   .finally done
       """
       Then the <button> tag is clicked
-      And the parameter "done" is called with the error "no such element"
+      And the parameter "done" is called with the arguments `null`
+      
+  Scenario: Clicking element based on cssSelector
+    Given I am on a page with the HTML "<div><button class='btn'>click me</button></div>"
+    When I run
+      """
+      niftyBrowser.click {element: 'div>.btn', withText: 'click me'}
+                  .finally done
+      """
+      Then the <button> tag is clicked
+      And the parameter "done" is called with the arguments `null`

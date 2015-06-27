@@ -28,7 +28,9 @@
     "mycha": "^0.9.1",
     "rewire": "^2.3.4",
     "sinon": "^1.15.1",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "css-to-xpath": "latest",
+    "xpath-builder": "latest"
   },
   "dependencies": {
     "chromedriver": "2.10.0",

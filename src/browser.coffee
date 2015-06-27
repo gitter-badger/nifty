@@ -5,6 +5,8 @@ chromeDriverPath = require('chromedriver').path
 CommandQueue = require './command_queue'
 path = require 'path'
 url = require 'url'
+cssToXpath = require 'css-to-xpath'
+dsl = require('xpath-builder').dsl()
 
 chrome.setDefaultService new chrome.ServiceBuilder(chromeDriverPath).build()
 
@@ -28,9 +30,14 @@ class Browser
 
     # Returns a selenium promise for the element of the passed selector
     findElement: (selector) ->
-      if typeof(selector) is 'string'
-        return @driver.findElement By.css selector
-      return @driver.findElement By.xpath "//" + selector.element + "[contains(text(), '" + selector.withText+"')]"
+      selector = switch typeof selector
+        when 'string' then element: selector
+        when 'object' then selector
+        else throw "findElement called with #{typeof selector}"
+
+      xpath = cssToXpath.parse(selector.element)
+      xpath = xpath.where dsl.contains selector.withText if selector.withText
+      @driver.findElement By.xpath xpath.toString()
 
 
   @parseHost = (host) ->
