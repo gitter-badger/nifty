@@ -18,6 +18,7 @@ module.exports =
   # to determine if it is used only for development
   devScripts: [
     'feature-tests'
+    'lint'
     'lint-dependencies'
     'test'
     'unit-tests'
