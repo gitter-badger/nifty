@@ -8,7 +8,7 @@ describe 'Command', ->
     context 'running working commands', ->
 
       beforeEach (done) ->
-        @spy = sinon.spy (arg, callback) => process.nextTick callback
+        @spy = sinon.spy (arg, callback) -> process.nextTick callback
         @context = {}
         @command = new Command 'my_extension', @spy
         @command.run @context, 'foo', (@err) => done()
@@ -29,7 +29,7 @@ describe 'Command', ->
     context 'running an erroring command', ->
 
       beforeEach (done) ->
-        @command = new Command 'my_extension', (callback) => callback 'some error'
+        @command = new Command 'my_extension', (callback) -> callback 'some error'
         @command.run {}, (@err) => done()
 
       it 'forwards the error', ->
@@ -39,7 +39,7 @@ describe 'Command', ->
     context 'running a command that never calls callback', ->
 
       beforeEach (done) ->
-        @command = new Command 'my_extension', timeout: 10, (callback) =>
+        @command = new Command 'my_extension', timeout: 10, (callback) ->
         @command.run {}, (@err) => done()
 
       it 'calls done with an error indicating the timeout', ->
@@ -49,7 +49,7 @@ describe 'Command', ->
     context 'running a command that calls a callback too late', ->
 
       beforeEach (done) ->
-        @command = new Command 'my_extension', timeout: 10, (callback) => setTimeout callback, 20
+        @command = new Command 'my_extension', timeout: 10, (callback) -> setTimeout callback, 20
         @command.run {}, @spy = sinon.spy (@err) => done()
 
       it 'calls done with an error indicating the timeout', ->

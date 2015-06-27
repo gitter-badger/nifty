@@ -29,7 +29,7 @@ class TestWebServer
 
 
   # Returns an array of events from event history optionally filtered by the passed object
-  getEvents: (filters={}) ->
+  getEvents: (filters = {}) ->
     @eventHistory.filter (event) ->
       for own filterKey, filterValue of filters
         return no if event[filterKey] isnt filterValue

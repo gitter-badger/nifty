@@ -13,7 +13,8 @@ module.exports =
     'spec_helper.coffee'
   ]
 
-  # array of strings or regular expressions to match against a script name in your `package.json`
+  # array of strings or regular expressions to match
+  # against a script name in your `package.json`
   # to determine if it is used only for development
   devScripts: [
     'feature-tests'

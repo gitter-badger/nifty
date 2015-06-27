@@ -3,6 +3,7 @@
   "version": "0.0.8",
   "description": "",
   "scripts": {
+    "lint": "find . -name '*.coffee' -not -path './node_modules/*' | xargs coffeelint",
     "feature-tests": "cucumber-js -r features/step_definitions",
     "lint-dependencies": "dependency-lint",
     "test": "npm run lint-dependencies && npm run unit-tests && npm run feature-tests",
@@ -22,6 +23,7 @@
     "body-parser": "^1.12.3",
     "chai": "^3.0.0",
     "coffee-script": "^1.9.2",
+    "coffeelint": "^1.10.1",
     "cucumber": "^0.4.8",
     "dependency-lint": "^2.0.0",
     "express": "^4.12.3",
