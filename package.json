@@ -29,8 +29,6 @@
     "rewire": "^2.3.4",
     "sinon": "^1.15.1",
     "sinon-chai": "^2.8.0",
-    "css-to-xpath": "latest",
-    "xpath-builder": "latest"
   },
   "dependencies": {
     "chromedriver": "2.10.0",
@@ -38,7 +36,9 @@
     "lodash": "^3.9.3",
     "nodeify": "^1.0.0",
     "robust-callbacks": "^0.0.5",
-    "selenium-webdriver": "2.43.5"
+    "selenium-webdriver": "2.43.5",
+    "css-to-xpath": "latest",
+    "xpath-builder": "latest"
   },
   "homepage": "https://github.com/originate/nifty"
 }
