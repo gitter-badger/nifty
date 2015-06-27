@@ -22,7 +22,7 @@
   },
 
   "indentation": {
-    "level": "ignore"     // Disabling because this doesn't handle indented call chains
+    "level": "ignore"
   },
 
   "max_line_length": {
