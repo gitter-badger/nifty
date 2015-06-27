@@ -1,5 +1,7 @@
 # Nifty
 
+[![Join the chat at https://gitter.im/Originate/nifty](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Originate/nifty?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 _A user-friendly API for programmatic control of browsers, based on [Selenium-Webdriver](https://www.npmjs.com/package/selenium-webdriver)._
 
 For details on how to use this, please refer to our very readable feature specs:
