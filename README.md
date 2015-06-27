@@ -1,4 +1,5 @@
 # Nifty
+[![Circle CI](https://circleci.com/gh/Originate/nifty.svg?style=shield)](https://circleci.com/gh/Originate/nifty)
 
 _A user-friendly API for programmatic control of browsers, based on [Selenium-Webdriver](https://www.npmjs.com/package/selenium-webdriver)._
 
