@@ -3,7 +3,7 @@
   "version": "0.0.8",
   "description": "",
   "scripts": {
-    "lint": "find . -name '*.coffee' -not -path './node_modules/*' | xargs coffeelint",
+    "lint": "find . -name '*.coffee' -not -path './node_modules/*' | xargs coffeelint -f coffeelint.json5",
     "feature-tests": "cucumber-js -r features/step_definitions",
     "lint-dependencies": "dependency-lint",
     "test": "npm run lint && npm run lint-dependencies && npm run unit-tests && npm run feature-tests",
